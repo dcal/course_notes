@@ -1,7 +1,7 @@
-# Navigating Notes
+#Navigating Notes
 My notes tend to contail specificially things I've learned. If I already know something, I will probably not write it down, unless I want to be reminded about it. Thus the notes may skip around a lot and don't follow the class lesson-per-lesson.
 
-# Introduction
+#Introduction
 Linux is not a unix operating system. Was designed from the ground up by Linus Torvalds in 1991.
 First version released in 1994.
 The heart of Linux is the Linux Kernel.
@@ -95,7 +95,7 @@ ls -l = long list
 
 _NOTE_ I should check out the man pages for some of these basic commands. There are some extensive abilities in simple commands like `ls` or `cd`.
 
-##Path Variable
+## Path Variable
 Path controls the command search path. This dictates where linux looks for the command you typed out, such as `ls`.
 Contains list of directories separated by a colon.
 Searches in order and executes the first it comes across in the path.
@@ -275,4 +275,57 @@ will actually send standard error to x and standard output to y as follows:
 - Then connect standard output to y;
 --------------------------------------------
 
+# Searching files
+### grep
+grep `-v` option inverts the search...matches lines that *dont* contian the pattern.
+`-c` count the number of lines matching the pattern.
+If you don't specify a file, it will use stdin.
+
+### | pipe
+Pipe splices stdout from first command to stdin of second command.
+
+### cut
+Never seen this one. Specify a delimiter and a field number to cut a portion of a file.
+
+### tr
+translate. Change one character from another.
+
+
+_MAIN TAKEAWAY:_
+Most linux commands do one thing really well, and you chain them together to get the results you want.
+
+
+PIPING vs REDIRECTING IO....interesting concept to talk about
+
+# Environment Variables
+###printenv
+
+`printenv` shows all environment variables
+
+Man pages show what environment variables a program relies on.
+
+# Processes
+Check out man page for this, there is some good stuff you don't do.
+
+put a `&` when starting a process in order to background it.
+
+### kill
+defualt signal sent to kill is `SIGTERM`, which is 15.
+if it doesn't die with `15` send the signal for `SIGKILL` which is `-9`
+`ctrl-C` sents `SIGINT`, which is close to `SIGTERM`
+
+Kill signal vs terminate:
+Kill tells the process to just die. The process can potentially ignore `SIGINT` and `SIGTERM`.
+
+# Switching users
+## su
+Using `su -` will set the environment to be similar to what the user would see had they logged in directly.
+Otherwise our environment vars are accessible under the assumed account.
+
+To sun a command as another user, use `sudo`
+
+I always thought this was just running admin commands with your credentials, but it's "switch user and do"
+So you can send it commands as whatever user you want!
+
+`sudo -u bob grep "" file`
 
